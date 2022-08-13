@@ -6,6 +6,10 @@ Sends the output of the last command to your default editor.
 
 If that’s something like [Helix Editor](https://helix-editor.com), you can use multiple cursors, etc., to manipulate it and copy it into the system clipboard (<kbd>space</kbd><kbd>y</kbd> in Helix) to use in future commands.
 
+⚠️  Sote re-runs the last command in order to get the output __so don’t use it after a command that has side-effects__.
+
+💡 Terminals/shells [could provide much better support for this use case](https://github.com/fish-shell/fish-shell/issues/2644). Given how obsessed some folks are about never touching the mouse, I’m quite suprised it hasn’t happened yet.
+
 ## Install
 
 Install using [Fisher](https://github.com/jorgebucaran/fisher):
@@ -26,8 +30,14 @@ bind \cs sote
 
 Technically, like basically everything else in Fish shell, [it’s just a function](https://zerokspot.com/weblog/2016/01/16/fishy-functions/).
 
-It gets your last history item (`$history[1]`), re-runs it using `eval()` (__so don’t use it on anything that has side-effects__), then splits the output into multiple lines and sends it to your `$EDITOR`.
+It gets your last history item (`$history[1]`), re-runs it using `eval()`, then splits the output into multiple lines and sends it to your `$EDITOR`.
 
+## Related tools and workflows
+
+  - Instead of getting a directory listing (e.g., `ls -1`) and manipulating the results with Sote, you could use a file manager like [lf](https://github.com/gokcehan/lf) that lets you make [multiple selections](https://pkg.go.dev/github.com/gokcehan/lf#section-readme) (in lf, by pressing <kbd>space</kbd>).
+
+  - Specifically for renaming multiple files, see [mmv](https://github.com/itchyny/mmv).
+  
 ## Like this? Fund us!
 
 [Small Technology Foundation](https://small-tech.org) is a tiny, independent not-for-profit.
